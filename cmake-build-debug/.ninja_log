@@ -1,15 +1,10 @@
 # ninja log v5
 1017	1048	1703227460207418039	CMakeFiles/sputify.dir/IdGenerator.cpp.o	6f586ce58c7fe02a
 2	1428	1703336043019512987	CMakeFiles/sputify.dir/Account.cpp.o	91720bb2ed68d78
-1	889	1703225847937218452	CMakeFiles/sputify.dir/User.cpp.o	173d4b4ccd63c705
-1058	1175	1703346812179591973	sputify	7e0a1cf00c539acd
-1	1058	1703346812063588632	CMakeFiles/sputify.dir/Commandler.cpp.o	adcfe3d0ab6c454b
-1	953	1703336365605081518	CMakeFiles/sputify.dir/SputifyCore.cpp.o	f79520298b01e1c1
-1	805	1703346811811581376	CMakeFiles/sputify.dir/main.cpp.o	4dc4c8fc5a1853c2
-2	1038	1703351980827049289	CMakeFiles/sputify.dir/Song.cpp.o	1a36fe9e12be1f70
-1	1111	1703351980899053125	CMakeFiles/sputify.dir/main.cpp.o	4dc4c8fc5a1853c2
-2	1486	1703351981275073150	CMakeFiles/sputify.dir/Commandler.cpp.o	adcfe3d0ab6c454b
 1038	1689	1703351981479084013	CMakeFiles/sputify.dir/Duration.cpp.o	e8484afcfdbf7c95
-1689	1799	1703351981587089764	sputify	4d35c14cdb23ed69
-1	805	1703352017076955582	CMakeFiles/sputify.dir/main.cpp.o	4dc4c8fc5a1853c2
+2	1038	1703351980827049289	CMakeFiles/sputify.dir/Song.cpp.o	1a36fe9e12be1f70
+1	889	1703225847937218452	CMakeFiles/sputify.dir/User.cpp.o	173d4b4ccd63c705
 805	913	1703352017184961188	sputify	4d35c14cdb23ed69
+2	1486	1703351981275073150	CMakeFiles/sputify.dir/Commandler.cpp.o	adcfe3d0ab6c454b
+1	953	1703336365605081518	CMakeFiles/sputify.dir/SputifyCore.cpp.o	f79520298b01e1c1
+1	805	1703352017076955582	CMakeFiles/sputify.dir/main.cpp.o	4dc4c8fc5a1853c2

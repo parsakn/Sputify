@@ -2,7 +2,8 @@
 #include "SputifyCore.h"
 
 SputifyCore::SputifyCore() {
-    this->id_handler = new IdGenerator();
+    this->account_id_handler = new IdGenerator();
+    this->songs_id_handler = new IdGenerator();
     this->logged_in_user = nullptr;
 }
 
@@ -14,7 +15,7 @@ void SputifyCore::signup(string& Username, string& Password, string& Mode) {
     if (find_username(Username)){
         throw invalid_argument("Bad Request");
     }
-    int Id = this->id_handler->assign_id();
+    int Id = this->account_id_handler->assign_id();
     accounts.push_back(new Account(Username,Password,Mode,Id));
     this->logged_in_user = accounts[accounts.size()-1];
     cout << "OK" << endl;
@@ -55,5 +56,13 @@ void SputifyCore::logout() {
         throw invalid_argument("Permission Denied");
     }
 
+}
+
+void SputifyCore::add_music(string &Title, string &Path, string &Year, string &Tags, string &Duration) {
+    if (this->logged_in_user != nullptr && this->logged_in_user->get_mode() == "artist"){
+
+    } else{
+        throw invalid_argument ("Permission Denied");
+    }
 }
 

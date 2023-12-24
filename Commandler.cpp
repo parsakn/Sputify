@@ -94,6 +94,10 @@ void Commandler::handle_post_commands(string& command,string& action) {
         logout_command();
     }
 
+    if (action == "music"){
+        music_command(command);
+    }
+
 }
 
 void Commandler::signup_command(string &command) {
@@ -127,6 +131,15 @@ void Commandler::logout_command() {
         cout << e.what() << endl;
     }
 
+}
+
+void Commandler::music_command(string &command) {
+    vector<string> expectedParams = {"title" , "path" , "year" , "tags" , "duration"};
+
+    try {
+        command_parser(command,expectedParams);
+
+    }
 }
 
 

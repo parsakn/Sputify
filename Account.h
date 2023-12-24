@@ -18,6 +18,7 @@ public:
     Account(string User_Name, string Password, string User_mode,int Id);
     ~Account();
 
+    virtual void add_song(string& Title,string& Path,string& Year,string& Tags,string& Duration) = 0;
     string get_username();
     string get_password();
     string get_mode();

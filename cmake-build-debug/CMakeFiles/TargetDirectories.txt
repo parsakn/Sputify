@@ -1,0 +1,3 @@
+/home/parsa/CLionProjects/sputify/cmake-build-debug/CMakeFiles/sputify.dir
+/home/parsa/CLionProjects/sputify/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/parsa/CLionProjects/sputify/cmake-build-debug/CMakeFiles/rebuild_cache.dir

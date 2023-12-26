@@ -26,6 +26,8 @@ private:
     void login_command(string& command);
     void music_command(string& command);
     void logout_command();
+    void get_musics();
+    void get_users();
 public:
     Commandler(SputifyCore* Server);
     void run();

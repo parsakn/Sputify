@@ -25,8 +25,8 @@ void Commandler::input_watcher() {
             string first_word;
             string second_word;
             string third_word;
-            if(!(iss >> first_word >> second_word >> third_word) || third_word != "?"){
-                throw invalid_argument("Bad Request");
+            if(!(iss >> first_word >> second_word >> third_word) || third_word != COMMAND_IDENTIFIER){
+                throw invalid_argument(BADREQUESTERROR);
             }
             input_seperator(line, first_word, second_word);
         } catch(invalid_argument& e) {
@@ -41,16 +41,16 @@ void Commandler::input_seperator(string& Line, string& First_word,string& Second
 
 
 
-    if (First_word == "GET"){
-
-    }else if (First_word == "POST"){
+    if (First_word == GET_METHOD){
+        handle_get_commands(Line,Second_word);
+    }else if (First_word == POST_METHOD){
         handle_post_commands(Line,Second_word);
-    }else if (First_word == "PUT"){
+    }else if (First_word == PUT_METHOD){
 
-    }else if (First_word == "DELETE"){
+    }else if (First_word == DELETE_METHOD){
 
     } else{
-        throw invalid_argument("Bad Request");
+        throw invalid_argument(BADREQUESTERROR);
     }
 
 
@@ -66,59 +66,69 @@ void Commandler::command_parser(string &command, vector<string> &expectedParams)
             char c;
             iss.get(c);
             string value;
-            getline(iss, value, '>');
+            getline(iss, value, COMMANDDELIMITER);
             params[token] = value;
         }
     }
 
     for (const string& param : expectedParams) {
         if (params.count(param) == 0) {
-            throw invalid_argument("Bad Request");
+            throw invalid_argument(BADREQUESTERROR);
         }
     }
 }
 
 void Commandler::handle_post_commands(string& command,string& action) {
 
-    string ignore;
 
-    if (action == "signup"){
+    if (action == SIGNUP){
         signup_command(command);
     }
 
-    if(action == "login"){
+    if(action == LOGIN){
         login_command(command);
     }
 
-    if(action == "logout"){
+    if(action == LOGOUT){
         logout_command();
     }
 
-    if (action == "music"){
+    if (action == MUSIC_ADD){
         music_command(command);
     }
 
 }
 
+void Commandler::handle_get_commands(string &command, string &action) {
+    if (action == GET_MUSICS){
+        get_musics();
+    }
+    if (action == GET_USERS){
+        get_users();
+    }
+}
+
+
+
 void Commandler::signup_command(string &command) {
-    vector<string> expectedParams = {"username", "password", "mode"};
+    vector<string> expectedParams = {USERNAME, PASSWORD, MODE};
     try {
         command_parser(command, expectedParams);
-        if (params["mode"] != "artist" && params["mode"] != "user") {
-            throw invalid_argument("Bad Request");
+        if (params[MODE] != ARTIST && params[MODE] != USER) {
+            throw invalid_argument(BADREQUESTERROR);
         }
-        this->server->signup(params["username"], params["password"], params["mode"]);
+        this->server->signup(params[USERNAME], params[PASSWORD], params[MODE]);
     } catch (invalid_argument& e) {
         cout << e.what() << endl;
     }
 }
 
 void Commandler::login_command(string &command) {
-    vector<string> expectedParams = {"username", "password"};
+    vector<string> expectedParams = {USERNAME, PASSWORD};
 
     try {
         command_parser(command, expectedParams);
-        this->server->login(params["username"], params["password"]);
+        this->server->login(params[USERNAME], params[PASSWORD]);
     } catch (invalid_argument& e) {
         cout << e.what() << endl;
     }
@@ -134,14 +144,32 @@ void Commandler::logout_command() {
 }
 
 void Commandler::music_command(string &command) {
-    vector<string> expectedParams = {"title" , "path" , "year" , "tags" , "duration"};
+    vector<string> expectedParams = {TITLE , PATH , YEARSTR , TAGS , DURATIONSTR};
 
     try {
         command_parser(command,expectedParams);
+        this->server->add_music(params[TITLE],params[PATH],params[YEARSTR],params[TAGS],params[DURATIONSTR]);
 
+    }catch (invalid_argument& e){
+        cout << e.what() << endl;
     }
 }
 
+void Commandler::get_musics() {
+    try {
+        this->server->show_musics();
+    }catch (invalid_argument& e){
+        cout << e.what() << endl;
+    }
+}
+
+void Commandler::get_users() {
+    try {
+        this->server->show_users();
+    }catch (invalid_argument& e){
+        cout << e.what() << endl;
+    }
+}
 
 
 

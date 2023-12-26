@@ -7,6 +7,8 @@
 #include "vector"
 #include "IdGenerator.h"
 #include "Song.h"
+#include "User.h"
+#include "Artist.h"
 
 class SputifyCore {
 private:
@@ -27,6 +29,10 @@ public:
     void add_music(string& Title, string& Path, string& Year,string& Tags,string& Duration);
     void login(string& Username, string& Password);
     void logout();
+    void show_musics();
+    void print_songs();
+    void show_users();
+    void print_users();
 
 };
 

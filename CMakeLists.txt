@@ -18,4 +18,8 @@ add_executable(sputify main.cpp
         Duration.cpp
         Duration.h
         Artist.cpp
-        Artist.h)
+        Artist.h
+        User.cpp
+        User.h
+        Playlist.cpp
+        Playlist.h)

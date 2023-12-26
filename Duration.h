@@ -5,7 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
-
+#include "Manual.h"
 
 class Duration {
 private:

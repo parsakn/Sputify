@@ -11,24 +11,24 @@
             char delimiter1, delimiter2;
 
             if (!(iss >> hours >> delimiter1 >> minutes >> delimiter2 >> seconds) ||
-                delimiter1 != ':' || delimiter2 != ':') {
-                throw std::invalid_argument("Invalid duration format");
+                delimiter1 != DURATIONDELIMITER || delimiter2 != DURATIONDELIMITER) {
+                throw std::invalid_argument(BADREQUESTERROR);
             }
         } catch (const std::exception& e) {
-            throw std::invalid_argument("Invalid duration format");
+            throw std::invalid_argument(BADREQUESTERROR);
         }
     }
 
 
     std::string Duration::formatDuration()  {
         std::ostringstream oss;
-        oss << std::setw(2) << std::setfill('0') << hours << ":"
-            << std::setw(2) << std::setfill('0') << minutes << ":"
+        oss << std::setw(2) << std::setfill('0') << hours << DURATIONFORMATTER
+            << std::setw(2) << std::setfill('0') << minutes << DURATIONFORMATTER
             << std::setw(2) << std::setfill('0') << seconds;
         return oss.str();
     }
 
 int Duration::get_in_seconds() {
-    return hours*3600 + minutes*60 + seconds;
+    return hours*SECOFHOUR + minutes*SECSOFMIN + seconds;
 }
 

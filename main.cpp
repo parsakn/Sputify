@@ -7,5 +7,4 @@ int main() {
     SputifyCore server;
     Commandler system(&server);
     system.run();
-
 }

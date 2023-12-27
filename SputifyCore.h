@@ -30,6 +30,8 @@ public:
     void login(string& Username, string& Password);
     void logout();
     void show_musics();
+    void show_specific_music(int Id);
+    void print_specific_music(Song* music);
     void print_songs();
     void show_users();
     void print_users();

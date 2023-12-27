@@ -28,9 +28,9 @@ public:
     string get_password();
     string get_mode();
     Song* get_last_song();
-//    int get_id() const;
-//    int get_songs_count();
-//    int get_playlists_count();
+    int get_id() const;
+    int get_songs_count();
+    int get_playlists_count();
 
     virtual void add_song(string& Title,string& Path,string& Year,string& Tags,string& Duration) = 0;
 

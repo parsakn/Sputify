@@ -38,3 +38,23 @@ string Song::get_title() {
 string Song::get_artist_name() {
     return this->artist_name;
 }
+
+int Song::get_year() {
+    return year;
+}
+
+string Song::get_duration() {
+    return this->duration->formatDuration();
+}
+
+string Song::get_tags() {
+    std::stringstream ss;
+    for (const auto& name : tags) {
+        if (&name != &tags[0]) {
+            ss << ";";
+        }
+        ss << name;
+    }
+    std::string result = ss.str();
+    return result;
+}

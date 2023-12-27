@@ -15,6 +15,7 @@ private:
 
 
     void input_watcher();
+    int command_counter(string& command_line);
     void input_seperator(string& Line,string& First_word,string& Second_word);
     void handle_get_commands(string& command,string& action);
     void handle_put_commands(string& command,string& action);
@@ -27,6 +28,7 @@ private:
     void music_command(string& command);
     void logout_command();
     void get_musics();
+    void get_specific_music(string& command);
     void get_users();
 public:
     Commandler(SputifyCore* Server);

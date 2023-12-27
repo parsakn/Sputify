@@ -114,3 +114,30 @@ void SputifyCore::print_users() {
     }
 }
 
+void SputifyCore::show_specific_music(int Id) {
+    if (logged_in_user == nullptr){throw invalid_argument(PERMISSIONDENIEDERROR);}
+    Song* music_in_demand = nullptr;
+    for (int i = 0; i < songs.size(); ++i) {
+        if (songs[i]->get_id() == Id){
+            music_in_demand = songs[i];
+            break;
+        }
+    }
+    if (music_in_demand == nullptr){
+        throw invalid_argument(NOTFOUNDERROR);
+    } else{
+        print_specific_music(music_in_demand);
+    }
+}
+
+void SputifyCore::print_specific_music(Song *music) {
+    cout << ONE_MUSIC_PRINT_DECP << endl;
+    cout << music->get_id() << LINE_SPACE;
+    cout << music->get_title() << LINE_SPACE;
+    cout << music->get_artist_name() << LINE_SPACE;
+    cout << music->get_year() << LINE_SPACE;
+    cout << music->get_tags() << LINE_SPACE;
+    cout << music->get_duration() << endl;
+
+}
+

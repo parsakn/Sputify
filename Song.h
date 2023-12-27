@@ -30,7 +30,10 @@ public:
     void set_artist(string Artist_Name);
 
     int get_id();
+    int get_year();
     string get_title();
+    string get_duration();
+    string get_tags();
     string get_artist_name();
 };
 

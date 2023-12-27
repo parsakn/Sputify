@@ -101,7 +101,14 @@ void Commandler::handle_post_commands(string& command,string& action) {
 
 void Commandler::handle_get_commands(string &command, string &action) {
     if (action == GET_MUSICS){
-        get_musics();
+        int command_count = command_counter(command);
+        if (command_count == 3) {
+            get_musics();
+        }else if(command_count == 5){
+            get_specific_music(command);
+        } else{
+            throw invalid_argument(BADREQUESTERROR);
+        }
     }
     if (action == GET_USERS){
         get_users();
@@ -171,5 +178,32 @@ void Commandler::get_users() {
     }
 }
 
+int Commandler::command_counter(string &command_line) {
+    istringstream iss(command_line);
+    int word_count = 0;
+    string word;
+    while(iss >> word){
+        word_count++ ;
+    }
+
+    return word_count;
+}
+
+void Commandler::get_specific_music(string& command) {
+    vector<string> expectedParams = {ID};
+
+    try {
+        command_parser(command,expectedParams);
+        int song_id = 0;
+        try {
+            song_id = stoi(params[ID]);
+        }catch (invalid_argument& e){
+            throw invalid_argument(BADREQUESTERROR);
+        }
+        this->server->show_specific_music(song_id);
+    }catch (invalid_argument& e){
+        cout << e.what() << endl;
+    }
+}
 
 

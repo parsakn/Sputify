@@ -30,6 +30,7 @@ const std::string LINE_SPACE = ", ";
 
 
 const std::string USERNAME = "username";
+const std::string ID = "id";
 const std::string PASSWORD = "password";
 const std::string MODE = "mode";
 const std::string TITLE = "title";
@@ -49,7 +50,8 @@ const int SECSOFMIN = 60;
 const int SECOFHOUR = 3600;
 
 const std::string SONGPRINTINGDESCRIPTIONLINE = "ID, Name, Artist";
-const std::string USERPRINTINGDESCRIPTIONLINE = "ID, Mode, Username, Playlists_number/Songs_number"
+const std::string USERPRINTINGDESCRIPTIONLINE = "ID, Mode, Username, Playlists_number/Songs_number";
+const std::string ONE_MUSIC_PRINT_DECP = "ID, Name, Artist, Year, Tags, Duration";
 
 
 

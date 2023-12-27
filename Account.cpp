@@ -27,17 +27,17 @@ Song *Account::get_last_song() {
     return this->songs[songs.size()-1] ;
 }
 
-//int Account::get_id() const {
-//    return this->id;
-//}
-//
-//int Account::get_songs_count() {
-//    int a = this->songs.size();
-//    return a;
-//}
-//
-//int Account::get_playlists_count() {
-//    int a = this->playlists.size();
-//    return a;
-//}
+int Account::get_id() const {
+    return this->id;
+}
+
+int Account::get_songs_count() {
+    int a = this->songs.size();
+    return a;
+}
+
+int Account::get_playlists_count() {
+    int a = this->playlists.size();
+    return a;
+}
 

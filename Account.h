@@ -6,6 +6,7 @@
 #include "vector"
 #include "Song.h"
 #include "Playlist.h"
+#include "algorithm"
 
 using namespace std;
 
@@ -31,9 +32,15 @@ public:
     int get_id() const;
     int get_songs_count();
     int get_playlists_count();
+    void remove_song_from_playlists(Song* music_in_demand);
+    Playlist* find_playlist(string& Name);
+
+
 
     virtual void add_song(string& Title,string& Path,string& Year,string& Tags,string& Duration) = 0;
-
+    virtual void add_playlist(string& Name) = 0;
+    virtual void add_song_to_playlist(string& Name,Song* Song) = 0;
+    virtual void get_playlists_info() = 0;
 };
 
 

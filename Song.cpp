@@ -1,17 +1,17 @@
 
 #include "Song.h"
 
-Song::Song(string &Title, string &Path, int &Year, string &Tagstring, string &Songduration){
+Song::Song(string &Title, string &Path, int &Year, string &Tag_str, string &Duration_Str){
     this->title = Title;
     this->path = Path;
     this->year = Year;
-    tag_parser(Tagstring);
-    duration = new Duration(Songduration);
+    tag_parser(Tag_str);
+    duration = new Duration(Duration_Str);
     id = 0;
 }
 
-void Song::tag_parser(string& Tagstring) {
-    std::istringstream iss(Tagstring);
+void Song::tag_parser(string& Tags_Str) {
+    std::istringstream iss(Tags_Str);
     std::string tag;
 
     while (std::getline(iss, tag, TAGDELIMITER)) {
@@ -43,7 +43,7 @@ int Song::get_year() {
     return year;
 }
 
-string Song::get_duration() {
+string Song::get_duration_str() {
     return this->duration->formatDuration();
 }
 
@@ -57,4 +57,8 @@ string Song::get_tags() {
     }
     std::string result = ss.str();
     return result;
+}
+
+Duration *Song::get_duration() {
+    return this->duration;
 }

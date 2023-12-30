@@ -26,10 +26,15 @@ private:
     void signup_command(string& command);
     void login_command(string& command);
     void music_command(string& command);
+    void add_playlist(string& command);
     void logout_command();
     void get_musics();
     void get_specific_music(string& command);
     void get_users();
+    void get_specific_user(string& command);
+    void add_song_to_playlist(string& command);
+    void get_playlist_info(string& command);
+    void remove_music(string& command);
 public:
     Commandler(SputifyCore* Server);
     void run();

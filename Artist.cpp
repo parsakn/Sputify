@@ -27,3 +27,16 @@ int Artist::handle_year(string &Syear) {
         throw invalid_argument(BADREQUESTERROR);
     }
 }
+
+void Artist::add_playlist(string &Name) {
+    throw invalid_argument(BADREQUESTERROR);
+}
+
+void Artist::add_song_to_playlist(string &Name,Song* Song) {
+    throw invalid_argument(BADREQUESTERROR);
+}
+
+void Artist::get_playlists_info() {
+    throw invalid_argument(BADREQUESTERROR);
+
+}

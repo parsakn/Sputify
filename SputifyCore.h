@@ -27,6 +27,7 @@ public:
 
     void signup(string& Username, string& Password, string& Mode);
     void add_music(string& Title, string& Path, string& Year,string& Tags,string& Duration);
+    void add_playlist(string& Name);
     void login(string& Username, string& Password);
     void logout();
     void show_musics();
@@ -34,7 +35,14 @@ public:
     void print_specific_music(Song* music);
     void print_songs();
     void show_users();
+    void show_specific_user(int Id);
+    void print_specific_user(Account* account);
     void print_users();
+    void add_song_to_playlist(string& Name , int id);
+    void get_playlist_info(int Id);
+    void remove_music(int Id);
+    Song* find_song(int id);
+    Account* find_user(int id);
 
 };
 

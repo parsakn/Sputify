@@ -46,9 +46,9 @@ void Commandler::input_seperator(string& Line, string& First_word,string& Second
     }else if (First_word == POST_METHOD){
         handle_post_commands(Line,Second_word);
     }else if (First_word == PUT_METHOD){
-
+        handle_put_commands(Line,Second_word);
     }else if (First_word == DELETE_METHOD){
-
+        handle_delete_commands(Line,Second_word);
     } else{
         throw invalid_argument(BADREQUESTERROR);
     }
@@ -78,27 +78,38 @@ void Commandler::command_parser(string &command, vector<string> &expectedParams)
     }
 }
 
+void Commandler::handle_delete_commands(string &command, string &action) {
+    if(action == DELETE_MUSIC){
+        remove_music(command);
+    }
+}
+
+
+
+
 void Commandler::handle_post_commands(string& command,string& action) {
 
 
-    if (action == SIGNUP){
+    if (action == SIGNUP) {
         signup_command(command);
     }
 
-    if(action == LOGIN){
+    if (action == LOGIN) {
         login_command(command);
     }
 
-    if(action == LOGOUT){
+    if (action == LOGOUT) {
         logout_command();
     }
 
-    if (action == MUSIC_ADD){
+    if (action == MUSIC_ADD) {
         music_command(command);
     }
 
+    if (action == ADD_PLAYLIST) {
+        add_playlist(command);
+    }
 }
-
 void Commandler::handle_get_commands(string &command, string &action) {
     if (action == GET_MUSICS){
         int command_count = command_counter(command);
@@ -111,10 +122,26 @@ void Commandler::handle_get_commands(string &command, string &action) {
         }
     }
     if (action == GET_USERS){
-        get_users();
+        int command_count = command_counter(command);
+        if (command_count == 3) {
+            get_users();
+        }else if(command_count == 5){
+            get_specific_user(command);
+        } else{
+            throw invalid_argument(BADREQUESTERROR);
+        }
+
+    }
+    if(action == GET_PLAYLIST_INFO){
+        get_playlist_info(command);
     }
 }
 
+void Commandler::handle_put_commands(string &command, string &action) {
+    if (action == ADD_SONG_TO_PLAYLIST){
+        add_song_to_playlist(command);
+    }
+}
 
 
 void Commandler::signup_command(string &command) {
@@ -206,4 +233,83 @@ void Commandler::get_specific_music(string& command) {
     }
 }
 
+void Commandler::get_specific_user(string &command) {
+    vector<string> expectedParams = {ID};
+
+    try {
+        command_parser(command,expectedParams);
+        int user_id = 0;
+        try {
+            user_id = stoi(params[ID]);
+        }catch (invalid_argument& e){
+            throw invalid_argument(BADREQUESTERROR);
+        }
+        this->server->show_specific_user(user_id);
+    }catch (invalid_argument& e){
+        cout << e.what() << endl;
+    }
+}
+
+void Commandler::add_playlist(string &command) {
+    vector<string> expectedParams = {NAME};
+
+    try {
+        command_parser(command,expectedParams);
+        this->server->add_playlist(params[NAME]);
+
+    }catch (invalid_argument& e){
+        cout << e.what() << endl;
+    }
+}
+
+void Commandler::add_song_to_playlist(string &command) {
+    vector<string> expectedParams = {NAME,ID};
+
+    try {
+        command_parser(command,expectedParams);
+        int song_id = 0;
+        try {
+            song_id = stoi(params[ID]);
+        }catch (invalid_argument& e){
+            throw invalid_argument(BADREQUESTERROR);
+        }
+        this->server->add_song_to_playlist(params[NAME],song_id);
+    }catch (invalid_argument& e){
+        cout << e.what() << endl;
+    }
+}
+
+void Commandler::get_playlist_info(string &command) {
+    vector<string> expectedParams = {ID};
+    try {
+        command_parser(command,expectedParams);
+        int user_id = 0;
+        try {
+            user_id = stoi(params[ID]);
+        }catch (invalid_argument& e){
+            throw invalid_argument(BADREQUESTERROR);
+        }
+        this->server->get_playlist_info(user_id);
+    }catch (invalid_argument& e){
+        cout << e.what() << endl;
+    }
+}
+
+void Commandler::remove_music(string &command) {
+    vector<string> expectedParams = {ID};
+
+    try {
+        command_parser(command,expectedParams);
+        int music_id = 0;
+        try {
+            music_id = stoi(params[ID]);
+        }catch (invalid_argument& e){
+            throw invalid_argument(BADREQUESTERROR);
+        }
+        this->server->remove_music(music_id);
+    }catch (invalid_argument& e){
+        cout << e.what() << endl;
+    }
+
+}
 

@@ -3,9 +3,15 @@
 #include "Duration.h"
 
 
+Duration::Duration(int Hours, int Minutes, int Seconds) {
+    this->hours = Hours;
+    this->minutes = Minutes;
+    this->seconds = Seconds;
+}
 
 
-    Duration::Duration(const std::string& durationStr) {
+
+Duration::Duration(const std::string& durationStr) {
         try {
             std::istringstream iss(durationStr);
             char delimiter1, delimiter2;

@@ -13,7 +13,8 @@ private:
     int minutes;
     int seconds;
 public:
-    explicit Duration(const std::string& durationStr);
+    Duration(int Hours, int Minutes, int Seconds);
+    Duration(const std::string& durationStr);
     int get_in_seconds();
     std::string formatDuration() ;
 

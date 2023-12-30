@@ -41,3 +41,29 @@ int Account::get_playlists_count() {
     return a;
 }
 
+Playlist *Account::find_playlist(string &Name) {
+    Playlist* playlist = nullptr;
+    for (int i = 0; i < get_playlists_count(); ++i) {
+        if(playlists[i]->get_name() == Name){
+            playlist = playlists[i];
+            break;
+        }
+    }
+    if (playlist == nullptr){throw invalid_argument(NOTFOUNDERROR);}
+    return playlist;
+}
+
+void Account::remove_song_from_playlists(Song *music_in_demand) {
+    for (auto & playlist : playlists) {
+        playlist->remove_song(music_in_demand);
+    }
+
+    auto it = std::find(songs.begin(), songs.end(), music_in_demand);
+        if (it != songs.end()) {
+            songs.erase(it);
+        }
+
+
+}
+
+

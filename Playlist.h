@@ -13,9 +13,15 @@ class Playlist {
 private:
     string name;
     vector <Song*> playlist_songs;
-    Duration* playlist_duration;
+    void convert_seconds(int& Hours,int& Minutes,int& Seconds);
 public:
     explicit Playlist(string& Name);
+    void add_song(Song* song);
+    string get_duration();
+    string get_name();
+    int get_song_numbers();
+    bool is_song_repeated(Song* Song);
+    void remove_song(Song* muisc_in_demand);
 };
 
 

@@ -117,9 +117,9 @@ void SputifyCore::print_users() {
 void SputifyCore::show_specific_music(int Id) {
     if (logged_in_user == nullptr){throw invalid_argument(PERMISSIONDENIEDERROR);}
     Song* music_in_demand = nullptr;
-    for (int i = 0; i < songs.size(); ++i) {
-        if (songs[i]->get_id() == Id){
-            music_in_demand = songs[i];
+    for (auto & song : songs) {
+        if (song->get_id() == Id){
+            music_in_demand = song;
             break;
         }
     }
@@ -137,7 +137,105 @@ void SputifyCore::print_specific_music(Song *music) {
     cout << music->get_artist_name() << LINE_SPACE;
     cout << music->get_year() << LINE_SPACE;
     cout << music->get_tags() << LINE_SPACE;
-    cout << music->get_duration() << endl;
+    cout << music->get_duration_str() << endl;
 
 }
+
+void SputifyCore::show_specific_user(int Id) {
+    if (logged_in_user == nullptr){throw invalid_argument(PERMISSIONDENIEDERROR);}
+    Account* account_in_demand = nullptr;
+    for (auto & account : accounts) {
+        if (account->get_id() == Id){
+            account_in_demand = account;
+            break;
+        }
+    }
+    if (account_in_demand == nullptr){
+        throw invalid_argument(NOTFOUNDERROR);
+    } else{
+        print_specific_user(account_in_demand);
+    }
+}
+
+void SputifyCore::print_specific_user(Account *account) {
+    cout << "ID: " << account->get_id() << endl;
+    cout << "Mode: " << account->get_mode() << endl;
+    cout << "Username: " << account->get_username() << endl;
+    if (account->get_mode() == ARTIST){
+        cout << "Playlists: " ;
+        for (int i = 0; i < account->get_playlists_count(); ++i) {
+
+        }
+    } else{
+
+    }
+
+
+}
+
+void SputifyCore::add_playlist(string &Name) {
+    if (this->logged_in_user != nullptr){
+        this->logged_in_user->add_playlist(Name);
+        cout << OKMSG << endl;
+    } else{
+        throw invalid_argument (PERMISSIONDENIEDERROR);
+    }
+}
+
+void SputifyCore::add_song_to_playlist(string &Name, int Id) {
+    if (this->logged_in_user != nullptr){
+        Song* song_in_demand = find_song(Id);
+        this->logged_in_user->add_song_to_playlist(Name,song_in_demand);
+        cout << OKMSG << endl;
+    } else{
+        throw invalid_argument (PERMISSIONDENIEDERROR);
+    }
+}
+
+void SputifyCore::get_playlist_info(int Id) {
+    if(logged_in_user != nullptr){
+        Account* user_in_demand = find_user(Id);
+        user_in_demand->get_playlists_info();
+    } else{
+        throw invalid_argument(PERMISSIONDENIEDERROR);
+    }
+}
+
+
+
+Song *SputifyCore::find_song(int id) {
+    for (auto & song : songs) {
+        if (song->get_id() == id){
+            return song;
+        }
+    }
+    throw invalid_argument(NOTFOUNDERROR);
+}
+
+Account *SputifyCore::find_user(int id) {
+    for (auto & acc : accounts) {
+        if (acc->get_id() == id){
+            return acc;
+        }
+    }
+    throw invalid_argument(NOTFOUNDERROR);
+}
+
+void SputifyCore::remove_music(int Id) {
+    if (this->logged_in_user != nullptr){
+        if(this->logged_in_user->get_mode() == USER){throw invalid_argument(BADREQUESTERROR);}
+        Song* music_in_demand = find_song(Id);
+        for (auto & account : accounts) {
+            account->remove_song_from_playlists(music_in_demand);
+        }
+        songs.erase(std::remove(songs.begin(), songs.end(), music_in_demand), songs.end());
+        delete music_in_demand;
+        cout << OKMSG << endl;
+    } else{
+        throw invalid_argument (PERMISSIONDENIEDERROR);
+    }
+
+}
+
+
 

@@ -37,10 +37,11 @@ public:
 
 
 
-    virtual void add_song(string& Title,string& Path,string& Year,string& Tags,string& Duration) = 0;
+    virtual void add_song(string& Title,string& Path,string& Year,string& Album,string& Tags,string& Duration) = 0;
     virtual void add_playlist(string& Name) = 0;
     virtual void add_song_to_playlist(string& Name,Song* Song) = 0;
     virtual void get_playlists_info() = 0;
+    virtual void get_registered_musics() = 0;
 };
 
 

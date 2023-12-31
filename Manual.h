@@ -25,6 +25,7 @@ const std::string LOGOUT = "logout";
 const std::string MUSIC_ADD = "music";
 const std::string DELETE_MUSIC = "music";
 const std::string ADD_SONG_TO_PLAYLIST = "add_playlist";
+const std::string REGISTERED_MUSIC = "registered_musics";
 const std::string GET_PLAYLIST_INFO = "playlist";
 const std::string GET_MUSICS = "musics";
 const std::string GET_USERS = "users";
@@ -38,6 +39,7 @@ const std::string ID = "id";
 const std::string PASSWORD = "password";
 const std::string MODE = "mode";
 const std::string TITLE = "title";
+const std::string ALBUM = "album";
 const std::string PATH = "path";
 const std::string YEARSTR = "year";
 const std::string NAME = "name";
@@ -56,7 +58,7 @@ const int SECOFHOUR = 3600;
 
 const std::string SONGPRINTINGDESCRIPTIONLINE = "ID, Name, Artist";
 const std::string USERPRINTINGDESCRIPTIONLINE = "ID, Mode, Username, Playlists_number/Songs_number";
-const std::string ONE_MUSIC_PRINT_DECP = "ID, Name, Artist, Year, Tags, Duration";
+const std::string ONE_MUSIC_PRINT_DECP = "ID, Name, Artist, Year, Album, Tags, Duration";
 const std::string PLAYLISTS_INFO_LINE = "Playlist_name, Songs_number, Duration";
 
 

@@ -83,10 +83,6 @@ void Commandler::handle_delete_commands(string &command, string &action) {
         remove_music(command);
     }
 }
-
-
-
-
 void Commandler::handle_post_commands(string& command,string& action) {
 
 
@@ -135,15 +131,15 @@ void Commandler::handle_get_commands(string &command, string &action) {
     if(action == GET_PLAYLIST_INFO){
         get_playlist_info(command);
     }
+    if(action == REGISTERED_MUSIC){
+        registered_music();
+    }
 }
-
 void Commandler::handle_put_commands(string &command, string &action) {
     if (action == ADD_SONG_TO_PLAYLIST){
         add_song_to_playlist(command);
     }
 }
-
-
 void Commandler::signup_command(string &command) {
     vector<string> expectedParams = {USERNAME, PASSWORD, MODE};
     try {
@@ -178,11 +174,11 @@ void Commandler::logout_command() {
 }
 
 void Commandler::music_command(string &command) {
-    vector<string> expectedParams = {TITLE , PATH , YEARSTR , TAGS , DURATIONSTR};
+    vector<string> expectedParams = {TITLE , ALBUM ,PATH , YEARSTR , TAGS , DURATIONSTR};
 
     try {
         command_parser(command,expectedParams);
-        this->server->add_music(params[TITLE],params[PATH],params[YEARSTR],params[TAGS],params[DURATIONSTR]);
+        this->server->add_music(params[TITLE],params[PATH],params[YEARSTR],params[ALBUM],params[TAGS],params[DURATIONSTR]);
 
     }catch (invalid_argument& e){
         cout << e.what() << endl;
@@ -311,5 +307,13 @@ void Commandler::remove_music(string &command) {
         cout << e.what() << endl;
     }
 
+}
+
+void Commandler::registered_music() {
+    try {
+        this->server->registered_music();
+    }catch (invalid_argument& e){
+        cout << e.what() << endl;
+    }
 }
 

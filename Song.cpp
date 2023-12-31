@@ -1,10 +1,11 @@
 
 #include "Song.h"
 
-Song::Song(string &Title, string &Path, int &Year, string &Tag_str, string &Duration_Str){
+Song::Song(string &Title, string &Path, int &Year, string& Album , string &Tag_str, string &Duration_Str){
     this->title = Title;
     this->path = Path;
     this->year = Year;
+    this->album = Album;
     tag_parser(Tag_str);
     duration = new Duration(Duration_Str);
     id = 0;
@@ -61,4 +62,8 @@ string Song::get_tags() {
 
 Duration *Song::get_duration() {
     return this->duration;
+}
+
+string Song::get_album() {
+    return album;
 }

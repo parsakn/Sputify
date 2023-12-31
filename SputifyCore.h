@@ -26,7 +26,7 @@ public:
     ~SputifyCore();
 
     void signup(string& Username, string& Password, string& Mode);
-    void add_music(string& Title, string& Path, string& Year,string& Tags,string& Duration);
+    void add_music(string& Title, string& Path, string& Year,string& Album,string& Tags,string& Duration);
     void add_playlist(string& Name);
     void login(string& Username, string& Password);
     void logout();
@@ -41,6 +41,7 @@ public:
     void add_song_to_playlist(string& Name , int id);
     void get_playlist_info(int Id);
     void remove_music(int Id);
+    void registered_music();
     Song* find_song(int id);
     Account* find_user(int id);
 

@@ -66,9 +66,9 @@ void SputifyCore::logout() {
 
 }
 
-void SputifyCore::add_music(string &Title, string &Path, string &Year, string &Tags, string &Duration) {
+void SputifyCore::add_music(string &Title, string &Path, string &Year,string& Album, string &Tags, string &Duration) {
     if (this->logged_in_user != nullptr){
-        this->logged_in_user->add_song(Title,Path,Year,Tags,Duration);
+        this->logged_in_user->add_song(Title,Path,Year,Album,Tags,Duration);
         int Id = songs_id_handler->assign_id();
         this->logged_in_user->get_last_song()->set_id(Id);
         this->songs.push_back(logged_in_user->get_last_song());
@@ -136,6 +136,7 @@ void SputifyCore::print_specific_music(Song *music) {
     cout << music->get_title() << LINE_SPACE;
     cout << music->get_artist_name() << LINE_SPACE;
     cout << music->get_year() << LINE_SPACE;
+    cout << music->get_album() << LINE_SPACE;
     cout << music->get_tags() << LINE_SPACE;
     cout << music->get_duration_str() << endl;
 
@@ -194,14 +195,13 @@ void SputifyCore::add_song_to_playlist(string &Name, int Id) {
 
 void SputifyCore::get_playlist_info(int Id) {
     if(logged_in_user != nullptr){
+        if(logged_in_user->get_mode() == ARTIST){throw invalid_argument(BADREQUESTERROR);}
         Account* user_in_demand = find_user(Id);
         user_in_demand->get_playlists_info();
     } else{
         throw invalid_argument(PERMISSIONDENIEDERROR);
     }
 }
-
-
 
 Song *SputifyCore::find_song(int id) {
     for (auto & song : songs) {
@@ -235,6 +235,14 @@ void SputifyCore::remove_music(int Id) {
         throw invalid_argument (PERMISSIONDENIEDERROR);
     }
 
+}
+
+void SputifyCore::registered_music() {
+    if (this->logged_in_user != nullptr){
+        this->logged_in_user->get_registered_musics();
+    } else{
+        throw invalid_argument(PERMISSIONDENIEDERROR);
+    }
 }
 
 

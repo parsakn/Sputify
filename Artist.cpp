@@ -6,9 +6,9 @@ Artist::Artist(string &User_Name, string &Password, string &User_mode, int &Id) 
 
 }
 
-void Artist::add_song(string &Title, string &Path, string &Year, string &Tags, string &Duration) {
+void Artist::add_song(string &Title, string &Path, string &Year,string& Album, string &Tags, string &Duration) {
     int yearnumber = handle_year(Year);
-    this->songs.push_back(new Song(Title,Path,yearnumber,Tags,Duration));
+    this->songs.push_back(new Song(Title,Path,yearnumber,Album,Tags,Duration));
     songs[songs.size() - 1]->set_artist(this->get_username());
 }
 
@@ -39,4 +39,22 @@ void Artist::add_song_to_playlist(string &Name,Song* Song) {
 void Artist::get_playlists_info() {
     throw invalid_argument(BADREQUESTERROR);
 
+}
+
+void Artist::get_registered_musics() {
+    if (this->songs.empty()){throw invalid_argument(EMPTYERROR);}
+    print_songs();
+}
+
+void Artist::print_songs() {
+    cout << ONE_MUSIC_PRINT_DECP << endl;
+    for (auto& music : songs) {
+        cout << music->get_id() << LINE_SPACE;
+        cout << music->get_title() << LINE_SPACE;
+        cout << music->get_artist_name() << LINE_SPACE;
+        cout << music->get_year() << LINE_SPACE;
+        cout << music->get_album() << LINE_SPACE;
+        cout << music->get_tags() << LINE_SPACE;
+        cout << music->get_duration_str() << endl;
+    }
 }

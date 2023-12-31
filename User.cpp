@@ -6,7 +6,7 @@ User::User(string &User_Name, string &Password, string &User_mode, int &Id) : Ac
 
 }
 
-void User::add_song(string &Title, string &Path, string &Year, string &Tags, string &Duration) {
+void User::add_song(string &Title, string &Path, string &Year,string& Album, string &Tags, string &Duration) {
     throw invalid_argument(PERMISSIONDENIEDERROR);
 }
 
@@ -31,5 +31,10 @@ void User::get_playlists_info() {
     for (auto & playlist : playlists) {
         cout << playlist->get_name() << LINE_SPACE <<playlist->get_song_numbers() << LINE_SPACE << playlist->get_duration() << endl;
     }
+}
+
+void User::get_registered_musics() {
+    throw invalid_argument(BADREQUESTERROR);
+
 }
 

@@ -67,3 +67,8 @@ Duration *Song::get_duration() {
 string Song::get_album() {
     return album;
 }
+
+vector<string> Song::get_tags_vec() {
+    return this->tags;
+}
+

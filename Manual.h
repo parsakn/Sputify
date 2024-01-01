@@ -21,6 +21,7 @@ const std::string DELETE_METHOD = "DELETE";
 const std::string SIGNUP = "signup";
 const std::string ADD_PLAYLIST = "playlist";
 const std::string LOGIN = "login";
+const std::string SEARCH_MUSIC = "search_music";
 const std::string LOGOUT = "logout";
 const std::string MUSIC_ADD = "music";
 const std::string DELETE_MUSIC = "music";
@@ -44,6 +45,7 @@ const std::string PATH = "path";
 const std::string YEARSTR = "year";
 const std::string NAME = "name";
 const std::string TAGS = "tags";
+const std::string TAG = "tag";
 const std::string DURATIONSTR = "duration";
 
 const std::string USER = "user";

@@ -36,6 +36,7 @@ private:
     void get_playlist_info(string& command);
     void remove_music(string& command);
     void registered_music();
+    void search_music(string& command);
 public:
     Commandler(SputifyCore* Server);
     void run();

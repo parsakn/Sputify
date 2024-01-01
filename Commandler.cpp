@@ -134,6 +134,9 @@ void Commandler::handle_get_commands(string &command, string &action) {
     if(action == REGISTERED_MUSIC){
         registered_music();
     }
+    if(action == SEARCH_MUSIC){
+        search_music(command);
+    }
 }
 void Commandler::handle_put_commands(string &command, string &action) {
     if (action == ADD_SONG_TO_PLAYLIST){
@@ -315,5 +318,17 @@ void Commandler::registered_music() {
     }catch (invalid_argument& e){
         cout << e.what() << endl;
     }
+}
+
+void Commandler::search_music(string &command) {
+    vector<string> expectedParams = {NAME,ARTIST,TAG};
+
+    try {
+        command_parser(command,expectedParams);
+        this->server->search_music(params[NAME],params[ARTIST],params[TAG]);
+    }catch (invalid_argument& e){
+        cout << e.what() << endl;
+    }
+
 }
 

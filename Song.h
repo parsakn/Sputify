@@ -38,6 +38,7 @@ public:
     Duration* get_duration();
     string get_tags();
     string get_artist_name();
+    vector<string> get_tags_vec();
 };
 
 

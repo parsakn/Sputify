@@ -245,5 +245,37 @@ void SputifyCore::registered_music() {
     }
 }
 
+void SputifyCore::search_music(string &Name, string &Artist, string &Tag) {
+    if(logged_in_user != nullptr){
+        if (logged_in_user->get_mode() == ARTIST){throw invalid_argument(PERMISSIONDENIEDERROR);}
+        std::vector<Song*> matchingSongs;
+        for (const auto& song : songs) {
+            bool nameMatch = song->get_title().find(Name) != std::string::npos;
+            bool artistMatch = song->get_artist_name().find(Artist) != std::string::npos;
+            bool tagsMatch = std::none_of(song->get_tags_vec().begin(), song->get_tags_vec().end(), [Tag](const std::string& songTag) {
+                return songTag.find(Tag) != std::string::npos;
+            });
+
+            if (nameMatch && artistMatch && tagsMatch) {
+                matchingSongs.push_back(song);
+            }
+        }
+        print_search_results(matchingSongs);
+
+    }else {
+        throw invalid_argument(PERMISSIONDENIEDERROR);
+    }
+}
+
+void SputifyCore::print_search_results(const vector<Song *>& result) {
+    if (result.empty()){throw invalid_argument(EMPTYERROR);}
+    cout << SONGPRINTINGDESCRIPTIONLINE << endl;
+    for (auto i : result) {
+        cout << i->get_id() <<  LINE_SPACE;
+        cout << i->get_title() << LINE_SPACE;
+        cout << i->get_artist_name() << endl;
+    }
+}
+
 
 

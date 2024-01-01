@@ -44,7 +44,8 @@ public:
     void registered_music();
     Song* find_song(int id);
     Account* find_user(int id);
-
+    void search_music(string& Name, string& Artist, string& Tag);
+    void print_search_results(const vector<Song*>& result);
 };
 
 
